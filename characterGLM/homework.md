@@ -38,7 +38,10 @@ def generate_role_NameandInfo(role_profile: str) -> Generator[str, None, None]:
         ]
     )
 ```
+
 2、交替进行自动会话，程序里设置参数为20轮。
 ![alt text](image.png)
+
 3、会话保存在characterGLM\dialogue.txt
+
 4、使用gradio提供了可视化操作页面，点击flag可用保存会话内容。
