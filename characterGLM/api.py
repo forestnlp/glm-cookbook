@@ -128,6 +128,28 @@ def generate_role_appearance(role_profile: str) -> Generator[str, None, None]:
         ]
     )
 
+def generate_role_NameandInfo(role_profile: str) -> Generator[str, None, None]:
+    """ 用chatglm根据文本生成角色的名和人设 """
+    
+    instruction = f"""
+请从下列文本中，抽取出所描写对象的角色名；并抽取出其角色人设信息,不超过200字。以下面格式返回。如
+{{
+    "name": "鲁迅",
+    "info": "浙江绍兴人。他是一位著名文学家、思想家、革命家、教育家、民主战士，是新文化运动的重要参与者，也是中国现代文学的奠基人之一"
+}}
+文本：
+{role_profile}
+"""
+    return get_chatglm_response_via_sdk(
+        messages=[
+            {
+                "role": "user",
+                "content": instruction.strip()
+            }
+        ]
+    )
+
+
 
 def generate_chat_scene_prompt(messages: TextMsgList, meta: CharacterMeta) -> Generator[str, None, None]:
     """ 调用chatglm生成cogview的prompt，描写对话场景 """
